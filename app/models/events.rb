@@ -1,6 +1,6 @@
 module Events
   class << self
-    def signup(user)
+    def signup!(user)
       exchange = channel.fanout("users.signups")
       exchange.publish(user.to_json)
     end
