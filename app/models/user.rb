@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   end
 
   def self.suspend!(ids)
-    where(id: ids).each(&:suspend!)
+    users = where(id: ids)
+    users.each(&:suspend!)
+    users
   end
 end

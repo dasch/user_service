@@ -2,7 +2,8 @@ class SuspensionsController < ActionController::Base
   def create
     user_ids = params.permit(users: []).fetch(:users, [])
 
-    User.suspend!(user_ids)
+    users = User.suspend!(user_ids)
+    users.each {|user| Events.suspension!(user) }
     
     head :no_content
   end
