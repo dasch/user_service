@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140830144155) do
+ActiveRecord::Schema.define(version: 20140830150404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "suspensions", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.datetime "imposed_at", null: false
+    t.datetime "lifted_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name",       null: false
